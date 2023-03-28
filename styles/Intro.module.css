@@ -1,0 +1,21 @@
+.introSection {
+  padding-block: 20px;
+  color: var(--gray);
+}
+
+.introText {
+  padding: 10px 0;
+}
+
+.introTitle {
+  font-size: 2.5rem;
+  color: var(--marine-blue);
+  margin-block: 40px;
+}
+
+.introBody {
+}
+
+.introPar {
+  margin-bottom: 30px;
+}

@@ -1,0 +1,41 @@
+.hourBody {
+  margin-top: 15px;
+}
+.boxContainer {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 20px;
+  font-size: .8rem;
+}
+.boxItem {
+      font-family: serif;
+  padding: 5px;
+  width: fit-content;
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid #0d92ff;
+}
+
+.containerLabel {
+  margin-bottom: 20px;
+}
+
+.checkbox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.radiobox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.itemChecked {
+  background-color: #0d92ff;
+  color: var(--white);
+}

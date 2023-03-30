@@ -7,10 +7,18 @@
   flex-wrap: wrap;
   gap: 5px;
   margin-bottom: 20px;
-  font-size: .8rem;
+  font-size: 0.8rem;
+}
+.hourboxContainer {
+  margin-top: 15px;
+  display: grid;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 20px;
+  font-size: 0.8rem;
 }
 .boxItem {
-      font-family: serif;
+  font-family: serif;
   padding: 5px;
   width: fit-content;
   position: relative;

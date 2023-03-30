@@ -12,7 +12,7 @@ const stepTitles = [
 ];
 
 function Home() {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(5);
   const [formData, setFormData] = useState({
     personalInfo: {
       fullname: "",

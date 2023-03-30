@@ -113,11 +113,13 @@ function Hours({ hoursInfo, sethoursInfo, validData }) {
             <span>
               Souhaitez-vous faire du convoiturage Domicile - Travail ?{" "}
               {!validData.hasValidDecision && (
-                <span className={utilStyles.error}>Ce champ est obligatoire</span>
+                <span className={utilStyles.error}>
+                  Ce champ est obligatoire
+                </span>
               )}
             </span>
           </div>
-          <div className={HourStyles.boxContainer}>
+          <div className={HourStyles.hourboxContainer}>
             <Decision data={hoursInfo} setData={sethoursInfo} />
           </div>
         </label>

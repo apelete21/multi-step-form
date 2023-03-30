@@ -95,30 +95,14 @@ export default function PersonalInfo({
             onChange={handlesecondNameChange}
           />
         </label>
-        <label
-          htmlFor="email"
-          className={`${personalStyles.label} ${utilStyles.colorText}`}
-        >
-          <div className={personalStyles.labelContainer}>
-            <span>Adresse e-mail</span>
-            {getError(validForm.hasValidEmailAddress)}
-          </div>
-          <input
-            className={`${personalStyles.inputOne} ${
-              !validForm.hasValidEmailAddress && utilStyles.containerError
-            }`}
-            type="email"
-            value={personalInfo.email}
-            onChange={handleEmailChange}
-          />
-        </label>
+
         <label
           htmlFor="phoneNumber"
           className={`${personalStyles.label} ${utilStyles.colorText}`}
         >
           {" "}
           <div className={personalStyles.labelContainer}>
-            <span>Numero de téléphone</span>
+            <span>Votre numéro de téléphone svp ?</span>
             {getError(validForm.hasValidPhoneNumber)}
           </div>
           <input
@@ -128,6 +112,23 @@ export default function PersonalInfo({
             type="tel"
             value={personalInfo.phoneNumber}
             onChange={handlePhoneNumberChange}
+          />
+        </label>
+        <label
+          htmlFor="email"
+          className={`${personalStyles.label} ${utilStyles.colorText}`}
+        >
+          <div className={personalStyles.labelContainer}>
+            <span>Précisez votre address svp ?</span>
+            {getError(validForm.hasValidEmailAddress)}
+          </div>
+          <input
+            className={`${personalStyles.inputOne} ${
+              !validForm.hasValidEmailAddress && utilStyles.containerError
+            }`}
+            type="email"
+            value={personalInfo.email}
+            onChange={handleEmailChange}
           />
         </label>
         <label

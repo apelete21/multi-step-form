@@ -3,7 +3,6 @@ import IntroStyles from "../../styles/Intro.module.css";
 function Intro() {
   return (
     <section className={IntroStyles.introSection}>
-      <h3 className={IntroStyles.introText}>| Bienvenue</h3>
       <h1 className={IntroStyles.introTitle}>
         Formulaire Covoiturage Entreprise
       </h1>

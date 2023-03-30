@@ -12,6 +12,12 @@ export default function PersonalInfo({
       fullname: e.target.value,
     });
   }
+  function handlesecondNameChange(e) {
+    setPersonalInfo({
+      ...personalInfo,
+      secondName: e.target.value,
+    });
+  }
   function handleEmailChange(e) {
     setPersonalInfo({
       ...personalInfo,
@@ -29,7 +35,6 @@ export default function PersonalInfo({
       ...personalInfo,
       car: e.target.value,
     });
-    console.log(personalInfo);
   }
 
   function getError(validator) {
@@ -37,8 +42,8 @@ export default function PersonalInfo({
       return (
         <span className={utilStyles.error}>
           {validator === undefined
-            ? "This field is required"
-            : "Invalid format"}
+            ? "Veuillez remplir ce champ"
+            : "Format incorrect"}
         </span>
       );
   }
@@ -58,7 +63,7 @@ export default function PersonalInfo({
         >
           {" "}
           <div className={personalStyles.labelContainer}>
-            <span>Nom Complet</span>
+            <span>Nom</span>
             {getError(validForm.hasValidName)}
           </div>
           <input
@@ -66,10 +71,28 @@ export default function PersonalInfo({
               !validForm.hasValidName && utilStyles.containerError
             }`}
             type="text"
-            placeholder="e.g. Stephen King"
             maxLength={32}
             value={personalInfo.fullname}
             onChange={handleNameChange}
+          />
+        </label>
+        <label
+          htmlFor="fullname"
+          className={`${personalStyles.label} ${utilStyles.colorText}`}
+        >
+          {" "}
+          <div className={personalStyles.labelContainer}>
+            <span>Prenom</span>
+            {getError(validForm.hasValidsecondName)}
+          </div>
+          <input
+            className={`${personalStyles.inputOne} ${
+              !validForm.hasValidsecondName && utilStyles.containerError
+            }`}
+            type="text"
+            maxLength={32}
+            value={personalInfo.secondName}
+            onChange={handlesecondNameChange}
           />
         </label>
         <label
@@ -85,7 +108,6 @@ export default function PersonalInfo({
               !validForm.hasValidEmailAddress && utilStyles.containerError
             }`}
             type="email"
-            placeholder="e.g. stephenking@lorem.com"
             value={personalInfo.email}
             onChange={handleEmailChange}
           />
@@ -104,7 +126,6 @@ export default function PersonalInfo({
               !validForm.hasValidPhoneNumber && utilStyles.containerError
             }`}
             type="tel"
-            placeholder="e.g. +1 234 567 890"
             value={personalInfo.phoneNumber}
             onChange={handlePhoneNumberChange}
           />

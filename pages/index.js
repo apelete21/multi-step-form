@@ -3,16 +3,32 @@ import Step from "../components/step/step";
 import { useState } from "react";
 import Form from "../components/form";
 
-const stepTitles = ["Bienvenue", "Vos informations", "Horaires"];
+const stepTitles = [
+  "Bienvenue",
+  "Vos informations",
+  "Conducteurs",
+  "Passagers",
+  "Horaires",
+];
 
 function Home() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     personalInfo: {
       fullname: "",
+      secondName: "",
       email: "",
       phoneNumber: "",
       car: "",
+    },
+    driversInfo: {
+      freePlaces: "",
+      pricePerPlace: "",
+      carBrand: "",
+      fuel: "",
+    },
+    passengersInfo: { 
+      tripPrice: "",
     },
     hoursInfo: {
       days: [],
@@ -32,10 +48,20 @@ function Home() {
     } else if (step == 3) {
       setFormData({
         ...formData,
-        hoursInfo: info,
+        driversInfo: info,
       });
     } else if (step == 4) {
-      setStep(1)
+      setFormData({
+        ...formData,
+        passengersInfo: info,
+      });
+    } else if (step == 5) {
+      setFormData({
+        ...formData,
+        hoursInfo: info,
+      });
+    } else if (step == 6) {
+      setStep(1);
     }
     console.log(formData);
   }
@@ -43,7 +69,7 @@ function Home() {
   return (
     <>
       <Head>
-        <title>Multi Step Form</title>
+        <title>Formulaire Covoiturage Entreprise </title>
         <meta name="description" content="Multi-step Form" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>

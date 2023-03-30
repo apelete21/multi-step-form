@@ -5,7 +5,7 @@ export default function Step({ step, stepNumber, children }) {
     <article className={stepStyles.containerBig}>
       <button
         className={`${stepStyles.button} ${
-          (step == stepNumber || (step == 5 && stepNumber == 4)) &&
+          (step == stepNumber)&&
           stepStyles.stepFocused
         }`}
       >

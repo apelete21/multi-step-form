@@ -10,17 +10,27 @@ import PersonalInfo from "./personnalInfo";
 import Hours from "./horaires";
 import ThankYou from "../thanks/ThankYou";
 import { useRouter } from "next/router";
+import Drivers from "./drivers";
+import Passengers from "./passengers";
 
 function Form({ step, setStep, formData, updateFormData }) {
   const router = useRouter();
   const [personalInfo, setPersonalInfo] = useState({
     ...formData.personalInfo,
   });
+  const [driversInfo, setDriversInfo] = useState({
+    ...formData.driversInfo,
+  });
+  const [passengersInfo, setPassengersInfo] = useState({
+    ...formData.passengersInfo,
+  });
   const [hoursInfo, sethoursInfo] = useState({
     ...formData.hoursInfo,
   });
   const [validForm, setValidForm] = useState({
     hasValidName: true,
+    hasValidsecondName: true,
+    hasValidSurname: true,
     hasValidEmailAddress: true,
     hasValidPhoneNumber: true,
     hasValidCar: true,
@@ -31,24 +41,72 @@ function Form({ step, setStep, formData, updateFormData }) {
     hasValidWork: true,
     hasValidDecision: true,
   });
+  const [validDrivers, setValidDrivers] = useState({
+    hasValidFreePlace: true,
+    hasValidPricePerPlace: true,
+    hasValidCarBrand: true,
+    hasValidFuel: true,
+  });
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (step == 1) {
-      return setStep(step + 1);
-    } else if (step == 2) {
-      formValidation();
-    } else if (step == 3) {
-      dataValidation();
-    }
-  }
+  const [validPassengers, setValidPassengers] = useState({
+    hasValidTripPrice: true,
+  });
+
   function handleGoBack(e) {
     e.preventDefault();
-    setStep(step - 1);
+    if (personalInfo.car === "Non" && step == 5) {
+      return setStep((s) => s - 3);
+    } else setStep(step - 1);
+  }
+
+  function driversValidation() {
+    let validFreePlace = true;
+    let validPricePerPlace = true;
+    let validCarBrand = true;
+    let validFuel = true;
+    if (driversInfo.freePlaces == "") {
+      validFreePlace = false;
+    }
+    if (driversInfo.pricePerPlace == "") {
+      validPricePerPlace = false;
+    }
+    if (driversInfo.carBrand == "") {
+      validCarBrand = false;
+    }
+    if (driversInfo.fuel == "") {
+      validFuel = false;
+    }
+    setValidDrivers({
+      hasValidFreePlace: validFreePlace,
+      hasValidPricePerPlace: validPricePerPlace,
+      hasValidCarBrand: validCarBrand,
+      hasValidFuel: validFuel,
+    });
+    if (
+      [validFreePlace, validFuel, validPricePerPlace, validCarBrand].every(
+        (value) => value == true
+      )
+    ) {
+      updateFormData(driversInfo);
+      setStep((s) => s + 1);
+    }
+  }
+
+  function passengersValidation() {
+    let validTripPrice = true;
+    if (passengersInfo.tripPrice == "") {
+      validTripPrice = false;
+    }
+    setValidPassengers({
+      hasValidTripPrice: validTripPrice,
+    });
+    if (validTripPrice == true) {
+      updateFormData(passengersInfo);
+      setStep((s) => s + 1);
+    }
   }
 
   function dataValidation() {
-    console.log(hoursInfo);
     let validDay = true;
     let validHome = true;
     let validWork = true;
@@ -85,21 +143,24 @@ function Form({ step, setStep, formData, updateFormData }) {
     let validCar = true;
     if (personalInfo.car == "") validCar = false;
     let hasValidName = nameRegex.test(personalInfo.fullname);
+    let hasValidsecondName = nameRegex.test(personalInfo.secondName);
     let hasValidEmailAddress = emailRegex.test(personalInfo.email);
     let hasValidPhoneNumber = phoneNumberRegex.test(personalInfo.phoneNumber);
-    if (personalInfo.name == "") hasValidName = undefined;
+    if (personalInfo.fullname == "") hasValidName = undefined;
+    if (personalInfo.secondName == "") hasValidsecondName = undefined;
     if (personalInfo.email == "") hasValidEmailAddress = undefined;
     if (personalInfo.phoneNumber == "") hasValidPhoneNumber = undefined;
 
     setValidForm({
       hasValidName,
+      hasValidsecondName,
       hasValidEmailAddress,
       hasValidPhoneNumber,
       hasValidCar: validCar,
     });
     console.log(validForm);
     if (
-      [hasValidName, hasValidEmailAddress, hasValidPhoneNumber, validCar].every(
+      [hasValidName, hasValidsecondName, hasValidEmailAddress, hasValidPhoneNumber, validCar].every(
         (value) => value == true
       )
     ) {
@@ -108,21 +169,30 @@ function Form({ step, setStep, formData, updateFormData }) {
     }
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (step == 1) {
+      return setStep(step + 1);
+    } else if (step == 2) {
+      formValidation();
+      if (personalInfo.car === "Non") setStep((s) => s + 2);
+    } else if (step == 3) {
+      driversValidation();
+    } else if (step == 4) {
+      passengersValidation();
+    } else if (step == 5) {
+      dataValidation();
+    }
+  }
+
   const Redo = () => {
-    if (step >= 4) {
-      setStep(5);
+    if (step >= 6) {
       router.reload();
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {step > 1 && step < 4 && (
-        <p>
-          <b>Etape - {step} </b>
-        </p>
-      )}
-
       {step == 1 && <Intro />}
 
       {step == 2 && (
@@ -134,6 +204,22 @@ function Form({ step, setStep, formData, updateFormData }) {
       )}
 
       {step == 3 && (
+        <Drivers
+          driversInfo={driversInfo}
+          setDriversInfo={setDriversInfo}
+          validDrivers={validDrivers}
+        />
+      )}
+
+      {step == 4 && (
+        <Passengers
+          passengersInfo={passengersInfo}
+          setPassengersInfo={setPassengersInfo}
+          validPassengers={validPassengers}
+        />
+      )}
+
+      {step == 5 && (
         <Hours
           hoursInfo={hoursInfo}
           sethoursInfo={sethoursInfo}
@@ -141,16 +227,18 @@ function Form({ step, setStep, formData, updateFormData }) {
         />
       )}
 
-      {step == 4 && <ThankYou />}
+      {step == 6 && <ThankYou />}
 
-      {step == 5 && (
+      {step == 7 && (
         <>
           {" "}
-          <div style={{
-            textAlign: "center",
-            fontSize: "2rem"
-          }}>
-            <p>Patientez svp, rechargement...</p>
+          <div
+            style={{
+              textAlign: "center",
+              fontSize: "2rem",
+            }}
+          >
+            <p>Patientez svp...</p>
           </div>
         </>
       )}
@@ -161,20 +249,16 @@ function Form({ step, setStep, formData, updateFormData }) {
           className={step >= 2 ? formStyles.buttonGoBack : formStyles.firstPage}
           onClick={handleGoBack}
         >
-          Go Back
+          Retour
         </button>
         <button
           type="submit"
           className={`${formStyles.bottomButton} ${
-            step == 3 && formStyles.buttonConfirm
+            step == 5 && formStyles.buttonConfirm
           }`}
           onClick={Redo}
         >
-          {step == 3
-            ? "Confirm"
-            : step == 4
-            ? "Soumttre un autre"
-            : "Next Step"}
+          {step == 5 ? "Confirm" : step >= 6 ? "Nouvelle requête" : "Suivant"}
         </button>
       </div>
     </form>

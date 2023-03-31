@@ -51,7 +51,7 @@ function Decision({ setData, data }) {
         />
         <span>Autre</span>
         <input
-          className={personalStyles.inputOne}
+          className={personalStyles.inputTwo}
           type="text"
           placeholder="..."
           maxLength={225}

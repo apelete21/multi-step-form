@@ -18,12 +18,13 @@
   font-size: 0.8rem;
 }
 .boxItem {
-  font-family: serif;
+  font-size: 16px;
+  font-weight: bold;
   padding: 5px;
   width: fit-content;
   position: relative;
   border-radius: 5px;
-  border: 1px solid #0d92ff;
+  border: 1px solid var(--marine-blue);
 }
 
 .containerLabel {
@@ -44,6 +45,6 @@
   opacity: 0;
 }
 .itemChecked {
-  background-color: #0d92ff;
+  background-color: var(--marine-blue);
   color: var(--white);
 }

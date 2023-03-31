@@ -126,7 +126,7 @@ export default function PersonalInfo({
             className={`${personalStyles.inputOne} ${
               !validForm.hasValidEmailAddress && utilStyles.containerError
             }`}
-            type="email"
+            type="address"
             value={personalInfo.email}
             onChange={handleEmailChange}
           />

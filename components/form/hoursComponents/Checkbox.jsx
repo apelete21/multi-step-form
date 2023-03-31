@@ -14,7 +14,6 @@ const CheckBox = ({ value, sethoursInfo, hoursInfo }) => {
         const element = arr[index];
         if (element === val) {
           arr.splice(index, 1);
-          return console.log(element, "removed");
         }
         arr[index] = element;
       }
@@ -23,7 +22,6 @@ const CheckBox = ({ value, sethoursInfo, hoursInfo }) => {
       ...hoursInfo,
       days: [...(arr ?? arr), val],
     });
-    console.log(hoursInfo.days);
   }
   return (
     <div

@@ -63,7 +63,6 @@ function Home() {
     } else if (step == 6) {
       setStep(1);
     }
-    console.log(formData);
   }
 
   return (

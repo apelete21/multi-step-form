@@ -20,7 +20,6 @@ function Decision({ setData, data }) {
         finalDecision: "",
       });
     }
-    console.log(e.target.value);
   }
 
   function handleChange(e) {
@@ -30,7 +29,6 @@ function Decision({ setData, data }) {
         ...data,
         finalDecision: e.target.value,
       });
-      console.log(e.target.value);
     }
   }
 

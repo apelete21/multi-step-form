@@ -158,7 +158,6 @@ function Form({ step, setStep, formData, updateFormData }) {
       hasValidPhoneNumber,
       hasValidCar: validCar,
     });
-    console.log(validForm);
     if (
       [hasValidName, hasValidsecondName, hasValidEmailAddress, hasValidPhoneNumber, validCar].every(
         (value) => value == true

@@ -30,7 +30,6 @@ function Hours({ hoursInfo, sethoursInfo, validData }) {
       ...hoursInfo,
       homeDeparture: e.target.value,
     });
-    console.log(e.target.value);
   }
   // handle work departure time
   function handleWD(e) {
@@ -39,7 +38,6 @@ function Hours({ hoursInfo, sethoursInfo, validData }) {
       ...hoursInfo,
       WorkDeparture: e.target.value,
     });
-    console.log(e.target.value);
   }
 
   return (
@@ -48,7 +46,7 @@ function Hours({ hoursInfo, sethoursInfo, validData }) {
         Horaires
       </h1>
       <div className={HourStyles.hourBody}>
-        <label htmlFor="this" className={utilStyles.colorText}>
+        <label htmlFor="this" className={`${personalStyles.label} ${utilStyles.colorText}`}>
           <div className={personalStyles.labelContainer}>
             <span>Choisissez vos jours de convoiturage Domicile - Travail</span>
             {!validData.hasValidDays && (
@@ -68,7 +66,7 @@ function Hours({ hoursInfo, sethoursInfo, validData }) {
             })}
           </div>
         </label>
-        <label htmlFor="this" className={utilStyles.colorText}>
+        <label htmlFor="this" className={`${personalStyles.label} ${utilStyles.colorText}`}>
           <div className={personalStyles.labelContainer}>
             <span>Choisissez l'heure de départ de votre Domicile </span>
             {!validData.hasValidHome && (
@@ -88,7 +86,7 @@ function Hours({ hoursInfo, sethoursInfo, validData }) {
             })}
           </div>
         </label>
-        <label htmlFor="this" className={utilStyles.colorText}>
+        <label htmlFor="this" className={`${personalStyles.label} ${utilStyles.colorText}`}>
           <div className={personalStyles.labelContainer}>
             <span>Choisissez l'heure de départ de votre lieu de travail </span>
             {!validData.hasValidWork && (
@@ -108,7 +106,7 @@ function Hours({ hoursInfo, sethoursInfo, validData }) {
             })}
           </div>
         </label>
-        <label htmlFor="this" className={utilStyles.colorText}>
+        <label htmlFor="this" className={`${personalStyles.label} ${utilStyles.colorText}`}>
           <div className={personalStyles.labelContainer}>
             <span>
               Souhaitez-vous faire du convoiturage Domicile - Travail ?{" "}

@@ -54,8 +54,12 @@ function Form({ step, setStep, formData, updateFormData }) {
 
   function handleGoBack(e) {
     e.preventDefault();
-    if (personalInfo.car === "Non" && step == 5) {
-      return setStep((s) => s - 3);
+    if (personalInfo.car === "Non" && step == 4) {
+      return setStep(step - 2);
+    } else if (personalInfo.car === "Oui" && step == 3) {
+      return setStep(step - 1);
+    } else if (personalInfo.car === "Oui" && step == 5) {
+      return setStep(step - 2);
     } else setStep(step - 1);
   }
 
@@ -88,7 +92,9 @@ function Form({ step, setStep, formData, updateFormData }) {
       )
     ) {
       updateFormData(driversInfo);
-      setStep((s) => s + 1);
+      if (personalInfo.car === "Oui" && step == 3) {
+        setStep(step + 2);
+      }
     }
   }
 
@@ -102,7 +108,7 @@ function Form({ step, setStep, formData, updateFormData }) {
     });
     if (validTripPrice == true) {
       updateFormData(passengersInfo);
-      setStep((s) => s + 1);
+      setStep(step + 1)
     }
   }
 
@@ -135,7 +141,7 @@ function Form({ step, setStep, formData, updateFormData }) {
       )
     ) {
       updateFormData(hoursInfo);
-      setStep((s) => s + 1);
+      setStep(step + 1);
     }
   }
 
@@ -159,22 +165,29 @@ function Form({ step, setStep, formData, updateFormData }) {
       hasValidCar: validCar,
     });
     if (
-      [hasValidName, hasValidsecondName, hasValidEmailAddress, hasValidPhoneNumber, validCar].every(
-        (value) => value == true
-      )
+      [
+        hasValidName,
+        hasValidsecondName,
+        hasValidEmailAddress,
+        hasValidPhoneNumber,
+        validCar,
+      ].every((value) => value == true)
     ) {
       updateFormData(personalInfo);
-      setStep(step + 1);
+      if (personalInfo.car === "Oui") {
+        setStep(step + 1);
+      } else if (personalInfo.car === "Non") {
+        setStep(step + 2);
+      }
     }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     if (step == 1) {
-      return setStep(step + 1);
+      setStep(step + 1);
     } else if (step == 2) {
       formValidation();
-      if (personalInfo.car === "Non") setStep((s) => s + 2);
     } else if (step == 3) {
       driversValidation();
     } else if (step == 4) {
@@ -257,7 +270,7 @@ function Form({ step, setStep, formData, updateFormData }) {
           }`}
           onClick={Redo}
         >
-          {step == 5 ? "Confirm" : step >= 6 ? "Nouvelle requête" : "Suivant"}
+          {step == 5 ? "Soumettre" : step >= 6 ? "Nouvelle requête" : "Suivant"}
         </button>
       </div>
     </form>

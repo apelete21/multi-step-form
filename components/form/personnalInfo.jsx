@@ -54,9 +54,6 @@ export default function PersonalInfo({
         Informations Personnelles
       </h1>
       <fieldset className={utilStyles.noBorder}>
-        <legend className={utilStyles.description}>
-          Veuillez insèrer les informations correspondantes.
-        </legend>
         <label
           htmlFor="fullname"
           className={`${personalStyles.label} ${utilStyles.colorText}`}

@@ -17,12 +17,10 @@ export default function ThankYou() {
         <h1
           className={`${utilStyles.title} ${utilStyles.colorText} ${thankYouStyles.margins}`}
         >
-          Thank you!
+          Merci!
         </h1>
         <p className={utilStyles.description}>
-          Thanks for confirming your subscription! We hope you have fun using
-          our platform. If you ever need support, please feel free to email us
-          at support@loremgaming.com.
+          Votre formulaire a été soumis avec succès. 
         </p>
       </article>
     </section>

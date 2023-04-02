@@ -47,9 +47,6 @@ const Drivers = ({ driversInfo, setDriversInfo, validDrivers }) => {
         Conducteurs
       </h1>
       <fieldset className={utilStyles.noBorder}>
-        <legend className={utilStyles.description}>
-          Veuillez insèrer les informations correspondantes.
-        </legend>
         <label
           htmlFor=""
           className={`${personalStyles.label} ${utilStyles.colorText}`}

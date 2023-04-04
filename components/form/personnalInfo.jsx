@@ -142,6 +142,7 @@ export default function PersonalInfo({
               <input
                 type="radio"
                 name="radio"
+                checked={personalInfo.car == "Oui" ? true : false}
                 value={"Oui"}
                 onClick={handleCarChange}
               />
@@ -151,6 +152,7 @@ export default function PersonalInfo({
               <input
                 type="radio"
                 name="radio"
+                checked={personalInfo.car == "Non" ? true : false}
                 value={"Non"}
                 onClick={handleCarChange}
               />

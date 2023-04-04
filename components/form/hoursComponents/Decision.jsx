@@ -35,11 +35,23 @@ function Decision({ setData, data }) {
   return (
     <>
       <div className={personalStyles.radioItem}>
-        <input type="radio" name="radio" value={"Oui"} onClick={handleChoose} />
+        <input
+          type="radio"
+          name="radio"
+          checked={data.finalDecision == "Oui" ? true : false}
+          value={"Oui"}
+          onClick={handleChoose}
+        />
         <span>Oui</span>
       </div>
       <div className={personalStyles.radioItem}>
-        <input type="radio" name="radio" value={"Non"} onClick={handleChoose} />
+        <input
+          type="radio"
+          name="radio"
+          checked={choosen == "Non" ? true : false}
+          value={"Non"}
+          onClick={handleChoose}
+        />
         <span>Non</span>
       </div>
       <div className={personalStyles.radioItem}>
@@ -47,6 +59,7 @@ function Decision({ setData, data }) {
           type="radio"
           name="radio"
           value={"custom"}
+          checked={choosen === "custom" ? true : false}
           onClick={handleChoose}
         />
         <span>Autre</span>

@@ -62,7 +62,9 @@ const Drivers = ({ driversInfo, setDriversInfo, validDrivers }) => {
               ${!validDrivers.hasValidFreePlace && utilStyles.containerError}
             `}
             type="number"
-            maxLength={32}
+            maxLength={2}
+            min={1}
+            max={99}
             value={driversInfo.freePlaces}
             onChange={handleFreePlaces}
           />
@@ -83,6 +85,8 @@ const Drivers = ({ driversInfo, setDriversInfo, validDrivers }) => {
               }
             `}
             type="number"
+            maxLength={10}
+            min={0}
             value={driversInfo.pricePerPlace}
             onChange={handlePricePerPlace}
           />
@@ -120,6 +124,7 @@ const Drivers = ({ driversInfo, setDriversInfo, validDrivers }) => {
               <input
                 type="radio"
                 name="radio"
+                checked={driversInfo.fuel == "Essence" ? true : false}
                 value={"Essence"}
                 onClick={handleFuel}
               />
@@ -129,6 +134,7 @@ const Drivers = ({ driversInfo, setDriversInfo, validDrivers }) => {
               <input
                 type="radio"
                 name="radio"
+                checked={driversInfo.fuel == "Diesel" ? true : false}
                 value={"Diesel"}
                 onClick={handleFuel}
               />

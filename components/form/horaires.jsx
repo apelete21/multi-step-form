@@ -16,8 +16,32 @@ const weekDays = [
   "Dimanche",
 ];
 
-const hoursAM = ["05h30", "06h30", "07h30", "08h00", "09h00", "10h00"];
-const hoursPM = ["16h00", "17h00", "18h00", "19h00", "20h00", "21h00"];
+const hoursAM = [
+  "05h00",
+  "05h30",
+  "06h00",
+  "06h30",
+  "07h00",
+  "07h30",
+  "08h00",
+  "08h30",
+  "09h00",
+  "09h30",
+  "10h00",
+];
+const hoursPM = [
+  "16h00",
+  "16h30",
+  "17h00",
+  "17h30",
+  "18h00",
+  "18h30",
+  "19h00",
+  "19h30",
+  "20h00",
+  "20h30",
+  "21h00",
+];
 
 function Hours({ hoursInfo, sethoursInfo, validData }) {
   const [homeDeparture, setcheckValueAM] = useState("");
@@ -46,7 +70,10 @@ function Hours({ hoursInfo, sethoursInfo, validData }) {
         Horaires
       </h1>
       <div className={HourStyles.hourBody}>
-        <label htmlFor="this" className={`${personalStyles.label} ${utilStyles.colorText}`}>
+        <label
+          htmlFor="this"
+          className={`${personalStyles.label} ${utilStyles.colorText}`}
+        >
           <div className={personalStyles.labelContainer}>
             <span>Choisissez vos jours de convoiturage Domicile - Travail</span>
             {!validData.hasValidDays && (
@@ -66,7 +93,10 @@ function Hours({ hoursInfo, sethoursInfo, validData }) {
             })}
           </div>
         </label>
-        <label htmlFor="this" className={`${personalStyles.label} ${utilStyles.colorText}`}>
+        <label
+          htmlFor="this"
+          className={`${personalStyles.label} ${utilStyles.colorText}`}
+        >
           <div className={personalStyles.labelContainer}>
             <span>Choisissez l'heure de départ de votre Domicile </span>
             {!validData.hasValidHome && (
@@ -86,7 +116,10 @@ function Hours({ hoursInfo, sethoursInfo, validData }) {
             })}
           </div>
         </label>
-        <label htmlFor="this" className={`${personalStyles.label} ${utilStyles.colorText}`}>
+        <label
+          htmlFor="this"
+          className={`${personalStyles.label} ${utilStyles.colorText}`}
+        >
           <div className={personalStyles.labelContainer}>
             <span>Choisissez l'heure de départ de votre lieu de travail </span>
             {!validData.hasValidWork && (
@@ -106,7 +139,10 @@ function Hours({ hoursInfo, sethoursInfo, validData }) {
             })}
           </div>
         </label>
-        <label htmlFor="this" className={`${personalStyles.label} ${utilStyles.colorText}`}>
+        <label
+          htmlFor="this"
+          className={`${personalStyles.label} ${utilStyles.colorText}`}
+        >
           <div className={personalStyles.labelContainer}>
             <span>
               Souhaitez-vous faire du convoiturage Domicile - Travail ?{" "}

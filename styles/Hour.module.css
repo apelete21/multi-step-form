@@ -8,6 +8,7 @@
   gap: 5px;
   margin-bottom: 20px;
   font-size: 0.8rem;
+  max-width: 80%;
 }
 .hourboxContainer {
   margin-top: 15px;
@@ -19,12 +20,13 @@
 }
 .boxItem {
   font-size: 14px;
+  margin-bottom: 10px;
   font-weight: bold;
   padding: 5px;
   width: fit-content;
   position: relative;
   border-radius: 5px;
-  border: 1px solid var(--marine-blue);
+  border: .05px solid var(--marine-blue);
 }
 
 .containerLabel {

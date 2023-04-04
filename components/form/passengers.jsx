@@ -28,7 +28,6 @@ const Passengers = ({ passengersInfo, setPassengersInfo, validPassengers }) => {
         Passagers
       </h1>
       <fieldset className={utilStyles.noBorder}>
-    
         <label
           htmlFor="fullname"
           className={`${personalStyles.label} ${utilStyles.colorText}`}
@@ -44,12 +43,11 @@ const Passengers = ({ passengersInfo, setPassengersInfo, validPassengers }) => {
           <input
             className={`
               ${personalStyles.inputOne}
-              ${
-                !validPassengers.hasValidTripPrice && utilStyles.containerError
-              }
+              ${!validPassengers.hasValidTripPrice && utilStyles.containerError}
             `}
             type="number"
-            maxLength={32}
+            maxLength={10}
+            min={0}
             value={passengersInfo.tripPrice}
             onChange={handleTripPriceChange}
           />

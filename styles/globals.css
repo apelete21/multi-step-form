@@ -39,7 +39,7 @@ body {
   display: flex;
   justify-content: center;
   background-color: var(--magnolia);
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 }
 
 main {
@@ -79,12 +79,13 @@ li {
     display: flex;
     justify-content: center;
     align-items: start;
+    overflow-x: hidden;
   }
   main {
     width: 50%;
     min-width: 345px;
     border-radius: 0.8rem;
-    margin-top: 6.25rem;
+    margin-block: 6.25rem;
     padding: 2rem 1.5rem;
   }
   aside {

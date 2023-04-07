@@ -54,7 +54,7 @@ function Decision({ setData, data }) {
         />
         <span>Non</span>
       </div>
-      <div className={personalStyles.radioItem}>
+      {choosen === "Non" && <div className={personalStyles.radioItem}>
         <input
           type="radio"
           name="radio"
@@ -62,7 +62,7 @@ function Decision({ setData, data }) {
           checked={choosen === "custom" ? true : false}
           onClick={handleChoose}
         />
-        <span>Autre</span>
+        <span>Raison</span>
         <input
           className={personalStyles.inputTwo}
           type="text"
@@ -70,7 +70,7 @@ function Decision({ setData, data }) {
           maxLength={225}
           onChange={handleChange}
         />
-      </div>
+      </div>}
     </>
   );
 }

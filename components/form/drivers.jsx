@@ -77,19 +77,24 @@ const Drivers = ({ driversInfo, setDriversInfo, validDrivers }) => {
             <span>Qeul est le tarif de votre trajet par place ?</span>
             {getError(validDrivers.hasValidPricePerPlace)}
           </div>
-          <input
-            className={`
-              ${personalStyles.inputOne}
+          <div className={personalStyles.inputContainer}>
+            <input
+              className={`
+              ${personalStyles.inputFour}
               ${
                 !validDrivers.hasValidPricePerPlace && utilStyles.containerError
               }
             `}
-            type="number"
-            maxLength={10}
-            min={0}
-            value={driversInfo.pricePerPlace}
-            onChange={handlePricePerPlace}
-          />
+              type="number"
+              maxLength={15}
+              min={0}
+              value={driversInfo.pricePerPlace}
+              onChange={handlePricePerPlace}
+            />
+            <span className={personalStyles.price}>
+              <span>Fcfa</span>
+            </span>
+          </div>
         </label>
         <label
           htmlFor=""

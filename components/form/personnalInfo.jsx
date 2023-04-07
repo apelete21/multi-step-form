@@ -102,14 +102,19 @@ export default function PersonalInfo({
             <span>Votre numéro de téléphone svp ?</span>
             {getError(validForm.hasValidPhoneNumber)}
           </div>
-          <input
-            className={`${personalStyles.inputOne} ${
-              !validForm.hasValidPhoneNumber && utilStyles.containerError
-            }`}
-            type="tel"
-            value={personalInfo.phoneNumber}
-            onChange={handlePhoneNumberChange}
-          />
+          <div className={personalStyles.inputContainer}>
+            <span className={personalStyles.code}>
+              <span>+ 221</span>
+            </span>
+            <input
+              className={`${personalStyles.inputThree} ${
+                !validForm.hasValidPhoneNumber && utilStyles.containerError
+              }`}
+              type="tel"
+              value={personalInfo.phoneNumber}
+              onChange={handlePhoneNumberChange}
+            />
+          </div>
         </label>
         <label
           htmlFor="email"

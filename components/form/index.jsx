@@ -55,25 +55,10 @@ function Form({ step, setStep, formData, updateFormData }) {
   function handleGoBack(e) {
     e.preventDefault();
     if (personalInfo.car === "Non" && step == 4) {
-      setPassengersInfo({
-        tripPrice: "",
-      });
       return setStep(step - 2);
     } else if (personalInfo.car === "Oui" && step == 3) {
-      setDriversInfo({
-        freePlaces: "",
-        pricePerPlace: "",
-        carBrand: "",
-        fuel: "",
-      });
       return setStep(step - 1);
     } else if (personalInfo.car === "Oui" && step == 5) {
-      sethoursInfo({
-        days: [],
-        homeDeparture: "",
-        WorkDeparture: "",
-        finalDecision: "",
-      });
       return setStep(step - 2);
     } else setStep(step - 1);
   }

@@ -40,17 +40,22 @@ const Passengers = ({ passengersInfo, setPassengersInfo, validPassengers }) => {
             </span>
             {getError(validPassengers.hasValidTripPrice)}
           </div>
-          <input
-            className={`
-              ${personalStyles.inputOne}
+          <div className={personalStyles.inputContainer}>
+            <input
+              className={`
+              ${personalStyles.inputFour}
               ${!validPassengers.hasValidTripPrice && utilStyles.containerError}
             `}
-            type="number"
-            maxLength={10}
-            min={0}
-            value={passengersInfo.tripPrice}
-            onChange={handleTripPriceChange}
-          />
+              type="number"
+              maxLength={10}
+              min={0}
+              value={passengersInfo.tripPrice}
+              onChange={handleTripPriceChange}
+            />
+            <span className={personalStyles.price}>
+              <span>Fcfa</span>
+            </span>
+          </div>
         </label>
       </fieldset>
     </>

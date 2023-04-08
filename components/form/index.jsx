@@ -258,7 +258,7 @@ function Form({ step, setStep, formData, updateFormData }) {
       <div className={formStyles.bottom}>
         <button
           type="button"
-          className={step >= 2 ? formStyles.buttonGoBack : formStyles.firstPage}
+          className={step >= 2 && step <= 5 ? formStyles.buttonGoBack : formStyles.firstPage}
           onClick={handleGoBack}
         >
           Retour
@@ -270,7 +270,7 @@ function Form({ step, setStep, formData, updateFormData }) {
           }`}
           onClick={Redo}
         >
-          {step == 5 ? "Soumettre" : step >= 6 ? "Nouvelle requête" : "Suivant"}
+          {step == 5 ? "Soumettre" : step >= 6 ? "Soumettre à nouveau" : "Suivant"}
         </button>
       </div>
     </form>

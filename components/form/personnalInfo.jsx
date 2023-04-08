@@ -1,11 +1,13 @@
 import utilStyles from "../../styles/utils.module.css";
 import personalStyles from "../../styles/PersonalInfo.module.css";
+import { useState } from "react";
 
 export default function PersonalInfo({
   personalInfo,
   setPersonalInfo,
   validForm,
 }) {
+  const [number, setNumber] = useState(0);
   function handleNameChange(e) {
     setPersonalInfo({
       ...personalInfo,
@@ -25,10 +27,21 @@ export default function PersonalInfo({
     });
   }
   function handlePhoneNumberChange(e) {
+    var data = e.target.value;
+    if (number <= data.length) {
+      if (data.length == 2) {
+        data = data + " ";
+      } else if (data.length == 6) {
+        data = data + " ";
+      } else if (data.length == 9) {
+        data = data + " ";
+      }
+    }
     setPersonalInfo({
       ...personalInfo,
-      phoneNumber: e.target.value,
+      phoneNumber: data,
     });
+    setNumber(e.target.value.length);
   }
   function handleCarChange(e) {
     setPersonalInfo({
@@ -111,6 +124,7 @@ export default function PersonalInfo({
                 !validForm.hasValidPhoneNumber && utilStyles.containerError
               }`}
               type="tel"
+              maxLength={12}
               value={personalInfo.phoneNumber}
               onChange={handlePhoneNumberChange}
             />

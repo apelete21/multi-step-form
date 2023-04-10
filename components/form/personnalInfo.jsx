@@ -41,7 +41,7 @@ export default function PersonalInfo({
       ...personalInfo,
       phoneNumber: data,
     });
-    setNumber(e.target.value.length);
+    setNumber(data.length);
   }
   function handleCarChange(e) {
     setPersonalInfo({

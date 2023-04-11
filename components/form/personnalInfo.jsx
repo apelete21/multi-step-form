@@ -28,13 +28,19 @@ export default function PersonalInfo({
   }
   function handlePhoneNumberChange(e) {
     var data = e.target.value;
-    if (number <= data.length) {
+    if (number < data.length) {
       if (data.length == 2) {
         data = data + " ";
+      } else if (data.length == 3) {
+        data = personalInfo.phoneNumber + " " + data.charAt(data.length - 1);
       } else if (data.length == 6) {
         data = data + " ";
+      } else if (data.length == 7) {
+        data = personalInfo.phoneNumber + " " + data.charAt(data.length - 1);
       } else if (data.length == 9) {
         data = data + " ";
+      } else if (data.length == 10) {
+        data = personalInfo.phoneNumber + " " + data.charAt(data.length - 1);
       }
     }
     setPersonalInfo({

@@ -1,6 +1,8 @@
 import utilStyles from "../../styles/utils.module.css";
 import personalStyles from "../../styles/PersonalInfo.module.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+import useGooglePlaceAutoComplete from "@next/font/service/google_place_autocomplete";
 
 export default function PersonalInfo({
   personalInfo,
@@ -8,6 +10,10 @@ export default function PersonalInfo({
   validForm,
 }) {
   const [number, setNumber] = useState(0);
+  const map_address = useRef(null);
+  let autoComplete = "";
+  const googleAutoCompleteSvc = useGooglePlaceAutoComplete();
+
   function handleNameChange(e) {
     setPersonalInfo({
       ...personalInfo,
@@ -55,6 +61,12 @@ export default function PersonalInfo({
       car: e.target.value,
     });
   }
+  function handlemapaddressChange(e) {
+    setPersonalInfo({
+      ...personalInfo,
+      map_address: e.target.value,
+    });
+  }
 
   function getError(validator) {
     if (!validator || validator === "")
@@ -66,6 +78,29 @@ export default function PersonalInfo({
         </span>
       );
   }
+
+  const handleAddressSelect = async () => {
+    let addressObj = await googleAutoCompleteSvc.getFullAddress(autoComplete);
+    // map_address.current.value = addressObj.address1;
+    // setValue("address1", addressObj.address1);
+    setPersonalInfo({
+      ...personalInfo,
+      map_address: `${addressObj.address1}, ${addressObj.locality}, ${addressObj.countryLong}`,
+    });
+    console.log(addressObj);
+  };
+
+  useEffect(() => {
+    async function loadGoogleMaps() {
+      // initialize the Google Place Autocomplete widget and bind it to an input element.
+      // eslint-disable-next-line
+      autoComplete = await googleAutoCompleteSvc.initAutoComplete(
+        map_address.current,
+        handleAddressSelect
+      );
+    }
+    loadGoogleMaps();
+  }, [personalInfo.map_address]);
 
   return (
     <>
@@ -137,11 +172,11 @@ export default function PersonalInfo({
           </div>
         </label>
         <label
-          htmlFor="email"
+          htmlFor="address"
           className={`${personalStyles.label} ${utilStyles.colorText}`}
         >
           <div className={personalStyles.labelContainer}>
-            <span>Précisez votre address svp ?</span>
+            <span>Précisez votre addresse svp ?</span>
             {getError(validForm.hasValidEmailAddress)}
           </div>
           <input
@@ -151,6 +186,25 @@ export default function PersonalInfo({
             type="address"
             value={personalInfo.email}
             onChange={handleEmailChange}
+          />
+        </label>
+        <label
+          htmlFor="address"
+          className={`${personalStyles.label} ${utilStyles.colorText}`}
+        >
+          <div className={personalStyles.labelContainer}>
+            <span>Localisation ?</span>
+            {/* {getError(validForm.hasValidEmailAddress)} */}
+          </div>
+          <input
+            className={`${personalStyles.inputOne} ${
+              !validForm.hasValidEmailAddress && utilStyles.containerError
+            }`}
+            type="address"
+            placeholder=""
+            value={personalInfo.map_address}
+            onChange={handlemapaddressChange}
+            ref={map_address}
           />
         </label>
         <label
@@ -179,7 +233,7 @@ export default function PersonalInfo({
                 name="radio"
                 checked={personalInfo.car == "Non" ? true : false}
                 value={"Non"}
-                onClick={handleCarChange}
+                onChange={handleCarChange}
               />
               <span>Non</span>
             </div>

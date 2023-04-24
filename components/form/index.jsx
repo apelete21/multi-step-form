@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 import Drivers from "./drivers";
 import Passengers from "./passengers";
 
-function Form({ step, setStep, formData, updateFormData }) {
+function Form({ step, setStep, formData, updateFormData, requestLoading }) {
   const router = useRouter();
   const [personalInfo, setPersonalInfo] = useState({
     ...formData.personalInfo,
@@ -112,7 +112,7 @@ function Form({ step, setStep, formData, updateFormData }) {
     }
   }
 
-  function dataValidation() {
+  function hoursValidation() {
     let validDay = true;
     let validHome = true;
     let validWork = true;
@@ -193,15 +193,11 @@ function Form({ step, setStep, formData, updateFormData }) {
     } else if (step == 4) {
       passengersValidation();
     } else if (step == 5) {
-      dataValidation();
+      hoursValidation();
+    } else if (step >= 6) {
+      router.reload()
     }
   }
-
-  const Redo = () => {
-    if (step >= 6) {
-      router.reload();
-    }
-  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -239,7 +235,32 @@ function Form({ step, setStep, formData, updateFormData }) {
         />
       )}
 
-      {step == 6 && <ThankYou />}
+      {step == 6 &&
+        (requestLoading === false ? (
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img
+              style={{
+                width: "50px",
+                height: "50px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              src="/loader.gif"
+              alt="loader icon"
+            />
+          </div>
+        ) : (
+          <ThankYou />
+        ))}
 
       {step == 7 && (
         <>
@@ -250,7 +271,7 @@ function Form({ step, setStep, formData, updateFormData }) {
               fontSize: "2rem",
             }}
           >
-            <p>Patientez svp...</p>
+            <p>Une erreur est survenue...</p>
           </div>
         </>
       )}
@@ -258,7 +279,11 @@ function Form({ step, setStep, formData, updateFormData }) {
       <div className={formStyles.bottom}>
         <button
           type="button"
-          className={step >= 2 && step <= 5 ? formStyles.buttonGoBack : formStyles.firstPage}
+          className={
+            step >= 2 && step <= 5
+              ? formStyles.buttonGoBack
+              : formStyles.firstPage
+          }
           onClick={handleGoBack}
         >
           Retour
@@ -268,9 +293,12 @@ function Form({ step, setStep, formData, updateFormData }) {
           className={`${formStyles.bottomButton} ${
             step == 5 && formStyles.buttonConfirm
           }`}
-          onClick={Redo}
         >
-          {step == 5 ? "Soumettre" : step >= 6 ? "Soumettre à nouveau" : "Suivant"}
+          {step == 5
+            ? "Soumettre"
+            : step >= 6
+            ? "Soumettre à nouveau"
+            : "Suivant"}
         </button>
       </div>
     </form>

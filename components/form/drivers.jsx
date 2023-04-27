@@ -129,7 +129,7 @@ const Drivers = ({ driversInfo, setDriversInfo, validDrivers }) => {
               <input
                 type="radio"
                 name="radio"
-                checked={driversInfo.fuel == "Essence" ? true : false}
+                defaultChecked={driversInfo.fuel == "Essence" ? true : false}
                 value={"Essence"}
                 onClick={handleFuel}
               />
@@ -139,7 +139,7 @@ const Drivers = ({ driversInfo, setDriversInfo, validDrivers }) => {
               <input
                 type="radio"
                 name="radio"
-                checked={driversInfo.fuel == "Diesel" ? true : false}
+                defaultChecked={driversInfo.fuel == "Diesel" ? true : false}
                 value={"Diesel"}
                 onClick={handleFuel}
               />

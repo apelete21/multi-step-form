@@ -13,7 +13,14 @@ import { useRouter } from "next/router";
 import Drivers from "./drivers";
 import Passengers from "./passengers";
 
-function Form({ step, setStep, formData, updateFormData, requestLoading }) {
+function Form({
+  step,
+  setStep,
+  formData,
+  updateFormData,
+  requestLoading,
+  logoUrl,
+}) {
   const router = useRouter();
   const [personalInfo, setPersonalInfo] = useState({
     ...formData.personalInfo,
@@ -195,13 +202,13 @@ function Form({ step, setStep, formData, updateFormData, requestLoading }) {
     } else if (step == 5) {
       hoursValidation();
     } else if (step >= 6) {
-      router.reload()
+      router.reload();
     }
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      {step == 1 && <Intro />}
+      {step == 1 && <Intro logoUrl={logoUrl} />}
 
       {step == 2 && (
         <PersonalInfo

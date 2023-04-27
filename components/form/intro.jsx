@@ -1,8 +1,25 @@
 import IntroStyles from "../../styles/Intro.module.css";
 
-function Intro() {
+const headerStyles = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  width: "100%",
+};
+
+function Intro({ logoUrl }) {
   return (
     <section className={IntroStyles.introSection}>
+      <div style={headerStyles}>
+        <img src={"./logo.png"} alt="Logo error" width={80} />
+        {logoUrl !== "" ? (
+          <img src={logoUrl} alt="Logo" width={80} />
+        ) : logoUrl === null ? (
+          <span>Logo error</span>
+        ) : (
+          <span>Loading</span>
+        )}
+      </div>
       <h1 className={IntroStyles.introTitle}>
         Formulaire Covoiturage Entreprise
       </h1>

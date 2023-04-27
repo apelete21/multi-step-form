@@ -1,14 +1,11 @@
-import utilStyles from "../../../styles/utils.module.css";
 import personalStyles from "../../../styles/PersonalInfo.module.css";
-import HourStyles from "../../../styles/Hour.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function Decision({ setData, data }) {
-  
-  const [choosen, setChoosen] = useState()
+  const [choosen, setChoosen] = useState();
 
   function handleChoose(e) {
-    setChoosen(e.target.value)
+    setChoosen(e.target.value);
     if (e.target.value !== "custom") {
       setData({
         ...data,
@@ -23,7 +20,6 @@ function Decision({ setData, data }) {
   }
 
   function handleChange(e) {
-    
     if (choosen === "custom") {
       setData({
         ...data,
@@ -38,7 +34,7 @@ function Decision({ setData, data }) {
         <input
           type="radio"
           name="radio"
-          checked={data.finalDecision == "Oui" ? true : false}
+          defaultChecked={data.finalDecision == "Oui" ? true : false}
           value={"Oui"}
           onClick={handleChoose}
         />
@@ -48,29 +44,24 @@ function Decision({ setData, data }) {
         <input
           type="radio"
           name="radio"
-          checked={choosen == "Non" ? true : false}
+          defaultChecked={choosen == "Non" ? true : false}
           value={"Non"}
           onClick={handleChoose}
         />
         <span>Non</span>
       </div>
-      {choosen === "Non" && <div className={personalStyles.radioItem}>
-        <input
-          type="radio"
-          name="radio"
-          value={"custom"}
-          checked={choosen === "custom" ? true : false}
-          onClick={handleChoose}
-        />
-        <span>Raison</span>
-        <input
-          className={personalStyles.inputTwo}
-          type="text"
-          placeholder="..."
-          maxLength={225}
-          onChange={handleChange}
-        />
-      </div>}
+      {choosen === "Non" && (
+        <div className={personalStyles.radioItem}>
+          <span>Raison</span>
+          <input
+            className={personalStyles.inputTwo}
+            type="text"
+            placeholder="..."
+            maxLength={225}
+            onChange={handleChange}
+          />
+        </div>
+      )}
     </>
   );
 }

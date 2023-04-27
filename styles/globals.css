@@ -141,7 +141,7 @@ input[type=number] {
   }
   form {
     position: relative;
-    padding: 3.1rem 113px 3.1rem 135px;
+    padding: 0.1rem 113px 3.1rem 135px;
   }
   legend {
     margin-bottom: 3.1rem;
